@@ -11,16 +11,22 @@ class Player {
     this.image = new Image();
     this.image.src = "./images/static-bird.png";
 
-    this.posX = 50;
-    this.posY = this.gameHeight - this.height - 20;
-    this.posY = this.posY;
+    this.posX = this.gameWidth / 2;
+    this.posY = this.gameHeight / 2;
+    this.posY0 = this.posY;
 
-    this.velY = 1;
+    //Lateral movement
+
+    this.velX = 3;
+    this.right = true;
+
+    //Jump
+    this.velY = 40;
     this.gravity = 0.4;
 
     this.key = key;
 
-    //this.setListeners();
+    this.setListener();
   }
 
   draw() {
@@ -31,5 +37,35 @@ class Player {
       this.width,
       this.height
     );
+
+    this.move();
+  }
+  move() {
+    if (this.right && this.posX + this.width < this.gameWidth) {
+      this.posX += this.velX;
+    } else if (this.right && this.posX + this.width > this.gameWidth) {
+      this.right = false;
+    } else if (!this.right && this.posX > 0) {
+      this.posX -= this.velX;
+    } else {
+      this.right = true;
+    }
+    if (this.posY + this.height < this.gameHeight) {
+      this.posY += this.gravity;
+    }
+  }
+
+  setListener() {
+    document.addEventListener("keydown", (e) => {
+      if (e.keyCode == this.key.SPACE) {
+        this.jump();
+      }
+    });
+  }
+
+  jump() {
+    if (this.posY > 0) {
+      this.posY -= this.velY;
+    }
   }
 }
