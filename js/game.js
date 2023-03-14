@@ -10,7 +10,7 @@ const Game = {
   score: undefined,
   chainsaws: [],
 
-  keys: {
+  key: {
     SPACE: 32,
   },
 
@@ -53,6 +53,7 @@ const Game = {
     //1. Create background
     this.background = new Background(this.ctx, this.width, this.height);
     //2. Create player
+    this.player = new Player(this.ctx, this.width, this.height, this.key);
     //3. Create chainsaw array
     this.chainsaws = [];
   },
@@ -61,6 +62,7 @@ const Game = {
     //1. Draw background
     this.background.draw();
     //2. Draw player
+    this.player.draw();
     //3. Draw chainsaws array
   },
 
