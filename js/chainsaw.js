@@ -8,7 +8,7 @@ class Chainsaw {
         this.image = new Image();
         this.image.src = "./images/saw-blade.png";
 
-        //this.velX = 5;
+        this.velX = 5;
     }
 
     draw() {
@@ -19,5 +19,14 @@ class Chainsaw {
             this.width,
             this.height
           );
+    }
+
+    move() {
+        if (this.posX === gameWidth) {
+            this.posX -= this.velX;
+        }
+        else if (this.posX === 0) {
+            this.posX += this.velX;
+        }
     }
 }
