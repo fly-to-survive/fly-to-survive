@@ -1,5 +1,5 @@
 class Chainsaw {
-    constructor (ctx, gameWidth, ) {
+    constructor (ctx, gameWidth, gameHeight) {
         this.ctx = ctx;
         this.width = 250;
         this.height = this.width / 3;
