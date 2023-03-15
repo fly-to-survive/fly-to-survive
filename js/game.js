@@ -24,8 +24,8 @@ const Game = {
     this.ctx = this.canvas.getContext("2d");
   },
   setDimensions() {
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
+    this.width = window.innerWidth - 100;
+    this.height = window.innerHeight - 100;
 
     this.canvas.setAttribute("width", this.width);
     this.canvas.setAttribute("height", this.height);

@@ -17,11 +17,12 @@ class Player {
 
     //Lateral movement
 
-    this.velX = 3;
+    this.velX = 5;
     this.right = true;
 
     //Jump
-    this.velY = 40;
+    this.impulse = 40;
+    this.velY = 1;
     this.gravity = 0.4;
 
     this.key = key;
@@ -51,7 +52,8 @@ class Player {
       this.right = true;
     }
     if (this.posY + this.height < this.gameHeight) {
-      this.posY += this.gravity;
+      this.posY += this.velY;
+      this.velY += this.gravity;
     }
   }
 
@@ -64,8 +66,9 @@ class Player {
   }
 
   jump() {
-    if (this.posY > 0) {
-      this.posY -= this.velY;
+    if (this.posY - this.impulse > 0) {
+      this.posY -= this.impulse;
+      this.velY = -10;
     }
   }
 }
