@@ -8,8 +8,9 @@ const Game = {
   background: undefined,
   player: undefined,
   score: undefined,
-  chainsaws: undefined,
   music: undefined,
+  chainsawDown: undefined,
+  chainsawUp: undefined,
 
   key: {
     SPACE: 32,
@@ -58,11 +59,13 @@ const Game = {
     this.background = new Background(this.ctx, this.width, this.height);
     //2. Create player
     this.player = new Player(this.ctx, this.width, this.height, this.key);
-    //3. Create chainsaw array
-    this.chainsaws = new Chainsaw(this.ctx, this.width, this.height);
     //4. Music
     this.music = new Audio("./music/test-music.mp3");
     this.music.volume = 0.2;
+    //3. Create chainsaw
+    this.chainsawDown = new Chainsaw(this.ctx,this.width, this.height);
+    //4. Create chainsaw Up
+    this.chainsawUp = new ChainsawUp(this.ctx,this.width, this.height);
   },
 
   drawAll() {
@@ -71,7 +74,8 @@ const Game = {
     //2. Draw player
     this.player.draw();
     //3. Draw chainsaws array
-    this.chainsaws.draw();
+    this.chainsawDown.draw();
+    this.chainsawUp.draw();
   },
 
   clear() {
