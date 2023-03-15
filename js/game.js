@@ -8,7 +8,7 @@ const Game = {
   background: undefined,
   player: undefined,
   score: undefined,
-  chainsaws: [],
+  chainsaws: undefined,
 
   key: {
     SPACE: 32,
@@ -55,7 +55,7 @@ const Game = {
     //2. Create player
     this.player = new Player(this.ctx, this.width, this.height, this.key);
     //3. Create chainsaw array
-    this.chainsaws = [];
+    this.chainsaws = new Chainsaw(this.ctx,this.width, this.height);
   },
 
   drawAll() {
@@ -64,6 +64,7 @@ const Game = {
     //2. Draw player
     this.player.draw();
     //3. Draw chainsaws array
+    this.chainsaws.draw();
   },
 
   clear() {

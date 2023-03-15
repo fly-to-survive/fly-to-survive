@@ -1,8 +1,10 @@
 class Chainsaw {
     constructor (ctx, gameWidth, gameHeight) {
         this.ctx = ctx;
+        this.gameW = gameWidth;
+        this.gameH = gameHeight;
         this.width = 250;
-        this.height = this.width / 3;
+        this.height = this.width;
         this.posX = gameWidth - this.width;
         this.posY = gameHeight - this.height;
         this.image = new Image();
@@ -12,6 +14,7 @@ class Chainsaw {
     }
 
     draw() {
+
         this.ctx.drawImage(
             this.image,
             this.posX,
@@ -19,13 +22,15 @@ class Chainsaw {
             this.width,
             this.height
           );
+
+          this.move();
     }
 
     move() {
-        if (this.posX === gameWidth) {
+        if (this.posX >= 0) {
             this.posX -= this.velX;
         }
-        else if (this.posX === 0) {
+        else if (this.posX < this.gameW) {
             this.posX += this.velX;
         }
     }
