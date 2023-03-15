@@ -55,6 +55,9 @@ class Player {
       this.posY += this.velY;
       this.velY += this.gravity;
     }
+    if (this.posY <= 0) {
+      this.posY = 0;
+    }
   }
 
   setListener() {
