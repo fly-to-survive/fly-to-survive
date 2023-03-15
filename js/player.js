@@ -46,10 +46,12 @@ class Player {
       this.posX += this.velX;
     } else if (this.right && this.posX + this.width > this.gameWidth) {
       this.right = false;
+      this.image.src = "./images/static-bird-reverse.png";
     } else if (!this.right && this.posX > 0) {
       this.posX -= this.velX;
     } else {
       this.right = true;
+      this.image.src = "./images/static-bird.png";
     }
     if (this.posY + this.height < this.gameHeight) {
       this.posY += this.velY;
@@ -74,4 +76,5 @@ class Player {
       this.velY = -10;
     }
   }
+  flipHorizonatally() {}
 }
