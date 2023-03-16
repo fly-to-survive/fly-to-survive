@@ -10,7 +10,7 @@ class ChainsawUp {
     this.image = new Image();
     this.image.src = "./images/saw-blade.png";
 
-    this.velX = 5;
+    this.velX = 10;
     this.left = true;
   }
 
