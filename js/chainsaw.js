@@ -8,7 +8,7 @@ class Chainsaw {
     this.posX = gameWidth;
     this.posY = gameHeight - 80;
     this.image = new Image();
-    this.image.src = "./images/saw-blade-sprites.png";
+    this.image.src = "./images/saw-blade-sprite-f.png";
     this.image.frames = 2;
     this.image.framesIndex = 0;
 
@@ -35,7 +35,7 @@ class Chainsaw {
   }
 
   animate(framesCounter) {
-    if (framesCounter % 1 == 0) {
+    if (framesCounter % 3 == 0) {
       this.image.framesIndex++;
     }
     if (this.image.framesIndex >= this.image.frames) {

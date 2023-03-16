@@ -8,22 +8,39 @@ class ChainsawR {
       this.posX = gameWidth - 80;
       this.posY = gameHeight;
       this.image = new Image();
-      this.image.src = "./images/saw-blade.png";
+      this.image.src = "./images/saw-blade-sprite-f.png";
+      this.image.frames = 2;
+      this.image.framesIndex = 0;
   
       this.velY = 5;
       this.left = true;
     }
   
-    draw() {
+    draw(framesCounter) {
       this.ctx.drawImage(
         this.image,
+        (this.image.width / this.image.frames) * this.image.framesIndex,
+        0,
+        this.image.width / this.image.frames,
+        this.image.height,
         this.posX,
         this.posY,
         this.width,
         this.height
       );
   
+      this.animate(framesCounter);
+  
       this.move();
+    }
+  
+    animate(framesCounter) {
+      if (framesCounter % 3 == 0) {
+        this.image.framesIndex++;
+      }
+      if (this.image.framesIndex >= this.image.frames) {
+        this.image.framesIndex = 0;
+      }
     }
   
     move() {
