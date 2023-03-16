@@ -77,7 +77,7 @@ const Game = {
     //2. Draw player
     this.player.draw();
     //3. Draw chainsaws array
-    this.chainsawDown.draw();
+    this.chainsawDown.draw(this.framesCounter);
     this.chainsawUp.draw();
     this.chainsawL.draw();
     this.chainsawR.draw();
