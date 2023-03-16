@@ -51,6 +51,9 @@ const Game = {
       //3. Move chainsaws
       //4. Clear chainsaws
       //5. Check if isCollision and invoke .gameOver
+      if (this.isCollision()) {
+        this.gameOver();
+      }
       //6. Music
       this.music.play();
     }, 1000 / this.FPS);
@@ -87,7 +90,18 @@ const Game = {
     this.ctx.clearRect(0, 0, this.width, this.height);
   },
 
-  isCollistion() {},
+  isCollision() {
+    //1. chainsawDow - Not competed
+    if (
+      this.player.posX > this.chainsawDown.posX &&
+      this.player.posX < this.chainsawDown.posX + this.chainsawDown.width &&
+      this.player.posY + this.player.height > this.chainsawDown.posY
+    ) {
+      return true;
+    }
+  },
 
-  gameOver() {},
+  gameOver() {
+    clearInterval(this.interval);
+  },
 };

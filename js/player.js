@@ -76,5 +76,4 @@ class Player {
       this.velY = -10;
     }
   }
-  flipHorizonatally() {}
 }
