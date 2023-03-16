@@ -62,13 +62,13 @@ const Game = {
     //2. Create player
     this.player = new Player(this.ctx, this.width, this.height, this.key);
     //4. Music
-    this.music = new Audio("./music/test-music.mp3");
+    this.music = new Audio("./music/Flight_of_the_Bumblebee.mp3");
     this.music.volume = 0.2;
     //3. Create chainsaws
-    this.chainsawDown = new Chainsaw(this.ctx,this.width, this.height);
-    this.chainsawUp = new ChainsawUp(this.ctx,this.width, this.height);
-    this.chainsawL = new ChainsawL(this.ctx,this.width, this.height);
-    this.chainsawR = new ChainsawR(this.ctx,this.width, this.height);
+    this.chainsawDown = new Chainsaw(this.ctx, this.width, this.height);
+    this.chainsawUp = new ChainsawUp(this.ctx, this.width, this.height);
+    this.chainsawL = new ChainsawL(this.ctx, this.width, this.height);
+    this.chainsawR = new ChainsawR(this.ctx, this.width, this.height);
   },
 
   drawAll() {
