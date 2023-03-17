@@ -8,7 +8,7 @@ class ChainsawUp {
     this.posX = 0 - this.width;
     this.posY = 0 - 170;
     this.image = new Image();
-    this.image.src = "./images/saw-blade-sprite-f.png";
+    this.image.src = "./images/saw-blade-sprite-copia.png";
     this.image.frames = 2;
     this.image.framesIndex = 0;
 
