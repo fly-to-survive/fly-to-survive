@@ -28,8 +28,8 @@ const Game = {
     this.ctx = this.canvas.getContext("2d");
   },
   setDimensions() {
-    this.width = window.innerWidth - 100;
-    this.height = window.innerHeight - 100;
+    this.width = window.innerWidth * 0.9;
+    this.height = window.innerHeight * 0.9;
 
     this.canvas.setAttribute("width", this.width);
     this.canvas.setAttribute("height", this.height);
@@ -76,7 +76,7 @@ const Game = {
 
   drawAll() {
     //1. Draw background
-    this.background.draw();
+    //this.background.draw();
     //2. Draw player
     this.player.draw();
     //3. Draw chainsaws array
@@ -91,12 +91,71 @@ const Game = {
   },
 
   isCollision() {
-    //1. chainsawDow - Not competed
+    //1. chainsawDow
     if (
       this.player.posX > this.chainsawDown.posX &&
       this.player.posX + 40 <
         this.chainsawDown.posX + this.chainsawDown.width &&
       this.player.posY + this.player.height - 20 > this.chainsawDown.posY
+    ) {
+      return true;
+    }
+    if (
+      this.player.posX + this.player.width - this.chainsawDown.posX - 40 > 0 &&
+      this.player.posX + this.player.width <
+        this.chainsawDown.posX + this.chainsawDown.width &&
+      this.player.posY + this.player.height - 20 > this.chainsawDown.posY
+    ) {
+      return true;
+    }
+
+    //2. chainsawUp
+    if (
+      this.player.posX > this.chainsawUp.posX &&
+      this.player.posX + 80 < this.chainsawUp.posX + this.chainsawUp.width &&
+      this.player.posY < this.chainsawUp.posY + this.chainsawUp.width - 40
+    ) {
+      return true;
+    }
+    if (
+      this.player.posX + this.player.width - this.chainsawUp.posX - 40 > 0 &&
+      this.player.posX + this.player.width <
+        this.chainsawUp.posX + this.chainsawUp.width &&
+      this.player.posY < this.chainsawUp.posY + this.chainsawUp.width - 40
+    ) {
+      return true;
+    }
+
+    //3. chainsawL
+    if (
+      this.player.posY > this.chainsawL.posY &&
+      this.player.posY + 80 < this.chainsawL.posY + this.chainsawL.width &&
+      this.player.posX < this.chainsawL.posX + this.chainsawL.width - 40
+    ) {
+      return true;
+    }
+    if (
+      this.player.posY + this.player.width - this.chainsawL.posY - 40 > 0 &&
+      this.player.posY + this.player.width <
+        this.chainsawL.posY + this.chainsawL.width &&
+      this.player.posX < this.chainsawL.posX + this.chainsawL.width - 40
+    ) {
+      return true;
+    }
+
+    //4. chainsawR
+    if (
+      this.player.posY > this.chainsawR.posY &&
+      this.player.posY + 80 < this.chainsawR.posY + this.chainsawR.width &&
+      this.player.posX + this.player.width - 20 > this.chainsawR.posX
+    ) {
+      return true;
+    }
+    if (
+      this.player.posY + this.player.width - this.chainsawR.posY - 40 > 0 &&
+      this.player.posY + this.player.width <
+        this.chainsawR.posY + this.chainsawR.width &&
+      this.player.posX + this.player.width - 20 > this.chainsawR.posX
     ) {
       return true;
     }
