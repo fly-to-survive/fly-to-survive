@@ -94,8 +94,9 @@ const Game = {
     //1. chainsawDow - Not competed
     if (
       this.player.posX > this.chainsawDown.posX &&
-      this.player.posX < this.chainsawDown.posX + this.chainsawDown.width &&
-      this.player.posY + this.player.height > this.chainsawDown.posY
+      this.player.posX + 40 <
+        this.chainsawDown.posX + this.chainsawDown.width &&
+      this.player.posY + this.player.height - 20 > this.chainsawDown.posY
     ) {
       return true;
     }
