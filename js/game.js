@@ -28,8 +28,8 @@ const Game = {
     this.ctx = this.canvas.getContext("2d");
   },
   setDimensions() {
-    this.width = window.innerWidth - 100;
-    this.height = window.innerHeight - 100;
+    this.width = window.innerWidth * 0.9;
+    this.height = window.innerHeight * 0.9;
 
     this.canvas.setAttribute("width", this.width);
     this.canvas.setAttribute("height", this.height);
@@ -76,7 +76,7 @@ const Game = {
 
   drawAll() {
     //1. Draw background
-    this.background.draw();
+    //this.background.draw();
     //2. Draw player
     this.player.draw();
     //3. Draw chainsaws array

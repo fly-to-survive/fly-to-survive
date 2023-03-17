@@ -1,0 +1,18 @@
+body {
+  background-image: url(../images/background.jpg);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#myCanvas {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border: 20px solid;
+  border-image: url(../images/leaf.png);
+  border-image-slice: 50 100;
+  border-image-repeat: round;
+}
