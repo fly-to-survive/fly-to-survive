@@ -1,8 +1,18 @@
 body {
+  margin: 0;
+  padding: 0;
   background-image: url(../images/background.jpg);
   background-position: 0 0;
   background-repeat: no-repeat;
   background-size: cover;
+  vertical-align: center;
+}
+.screen {
+  display: block;
+  width: 25%;
+  position: fixed; /* or absolute */
+  top: 40%;
+  left: 40%;
 }
 #myCanvas {
   position: absolute;
@@ -11,8 +21,8 @@ body {
   left: 0;
   right: 0;
   margin: auto;
-  border: 20px solid;
-  border-image: url(../images/leaf.png);
-  border-image-slice: 50 100;
-  border-image-repeat: round;
+  border: 6px solid rgb(165, 99, 42);
+  /* border-image: url(../images/leaf.png);
+  border-image-slice: 100% 10;
+  border-image-repeat: repeat; */
 }
