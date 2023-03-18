@@ -9,7 +9,9 @@ class Player {
     this.height = 100;
 
     this.image = new Image();
-    this.image.src = "./images/static-bird.png";
+    this.image.src = "./images/sprite-bird-right.png";
+    this.image.frames = 14;
+    this.image.framesIndex = 0;
 
     this.posX = this.gameWidth / 2;
     this.posY = this.gameHeight / 2;
@@ -30,28 +32,42 @@ class Player {
     this.setListener();
   }
 
-  draw() {
+  draw(framesCounter) {
     this.ctx.drawImage(
       this.image,
+      (this.image.width / this.image.frames) * this.image.framesIndex,
+      0,
+      this.image.width / this.image.frames,
+      this.image.height,
       this.posX,
       this.posY,
       this.width,
       this.height
     );
 
+    this.animate(framesCounter);
     this.move();
+  }
+
+  animate(framesCounter) {
+    if (framesCounter % 5 == 0) {
+      this.image.framesIndex++;
+    }
+    if (this.image.framesIndex >= this.image.frames) {
+      this.image.framesIndex = 0;
+    }
   }
   move() {
     if (this.right && this.posX + this.width < this.gameWidth) {
       this.posX += this.velX;
     } else if (this.right && this.posX + this.width > this.gameWidth) {
       this.right = false;
-      this.image.src = "./images/static-bird-reverse.png";
+      this.image.src = "./images/sprite-bird-reverse.png";
     } else if (!this.right && this.posX > 0) {
       this.posX -= this.velX;
     } else {
       this.right = true;
-      this.image.src = "./images/static-bird.png";
+      this.image.src = "./images/sprite-bird-right.png";
     }
     if (this.posY + this.height < this.gameHeight) {
       this.posY += this.velY;

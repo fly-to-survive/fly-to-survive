@@ -47,7 +47,7 @@ const Game = {
       //1. Clear canvas
       this.clear();
       //2. Dran elements
-      this.drawAll();
+      this.drawAll(this.framesCounter);
       //3. Move chainsaws
       //4. Clear chainsaws
       //5. Check if isCollision and invoke .gameOver
@@ -78,7 +78,7 @@ const Game = {
     //1. Draw background
     //this.background.draw();
     //2. Draw player
-    this.player.draw();
+    this.player.draw(this.framesCounter);
     //3. Draw chainsaws array
     this.chainsawDown.draw(this.framesCounter);
     this.chainsawUp.draw(this.framesCounter);
