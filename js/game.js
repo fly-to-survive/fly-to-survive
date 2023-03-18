@@ -13,6 +13,7 @@ const Game = {
   chainsawUp: undefined,
   chainsawL: undefined,
   chainsawR: undefined,
+  fruit: undefined,
 
   key: {
     SPACE: 32,
@@ -72,6 +73,8 @@ const Game = {
     this.chainsawUp = new ChainsawUp(this.ctx, this.width, this.height);
     this.chainsawL = new ChainsawL(this.ctx, this.width, this.height);
     this.chainsawR = new ChainsawR(this.ctx, this.width, this.height);
+    //5. Create fruit
+    this.fruit = new Fruit(this.ctx, this.width, this.height);
   },
 
   drawAll() {
@@ -84,6 +87,8 @@ const Game = {
     this.chainsawUp.draw(this.framesCounter);
     this.chainsawL.draw(this.framesCounter);
     this.chainsawR.draw(this.framesCounter);
+    //4. Draw fruit
+    this.fruit.draw();
   },
 
   clear() {
