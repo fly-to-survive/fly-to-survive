@@ -11,8 +11,8 @@ body {
   left: 0;
   right: 0;
   margin: auto;
-  border: 20px solid;
-  border-image: url(../images/leaf.png);
-  border-image-slice: 50 100;
-  border-image-repeat: round;
+  border: 6px solid rgb(165, 99, 42);
+  /* border-image: url(../images/leaf.png);
+  border-image-slice: 100% 10;
+  border-image-repeat: repeat; */
 }
