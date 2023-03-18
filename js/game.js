@@ -19,6 +19,8 @@ const Game = {
   },
 
   init() {
+    this.toggleScreen("startScreen", false);
+    this.toggleScreen("myCanvas", true);
     this.setContext();
     this.setDimensions();
     this.start();
@@ -33,6 +35,12 @@ const Game = {
 
     this.canvas.setAttribute("width", this.width);
     this.canvas.setAttribute("height", this.height);
+  },
+
+  toggleScreen(id, toggle) {
+    let element = document.getElementById(id);
+    let display = toggle ? "block" : "none";
+    element.style.display = display;
   },
 
   start() {

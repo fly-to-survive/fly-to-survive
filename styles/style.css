@@ -1,8 +1,18 @@
 body {
+  margin: 0;
+  padding: 0;
   background-image: url(../images/background.jpg);
   background-position: 0 0;
   background-repeat: no-repeat;
   background-size: cover;
+  vertical-align: center;
+}
+.screen {
+  display: block;
+  width: 25%;
+  position: fixed; /* or absolute */
+  top: 40%;
+  left: 40%;
 }
 #myCanvas {
   position: absolute;
