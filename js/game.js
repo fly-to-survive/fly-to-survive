@@ -176,5 +176,6 @@ const Game = {
 
   gameOver() {
     clearInterval(this.interval);
+    this.music.currentTime = 1000;
   },
 };
