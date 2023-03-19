@@ -12,7 +12,6 @@
   <body>
     <div id="startScreen" class="screen">
       <h1>Fly to Survive</h1>
-
       <div>
         <p id="text"></p>
         <script src="https://unpkg.com/typed.js@2.0.132/dist/typed.umd.js"></script>
@@ -21,15 +20,14 @@
             strings: [
               "Año 2653, tras la caída del Segundo Imperio Español, las IAs han tomado el control de la tierra, su objetivo es desforestar todos los bosques para acabar con la vida en la tierra. Tu objetivo es sobrevivir a las sierras.",
             ],
-            typeSpeed: 100,
+            typeSpeed: 200,
             showCursor: false,
           });
         </script>
       </div>
-      <button onclick="Game.init()">Start game</button>
+      <p class="button">Push Space to start</p>
     </div>
     <canvas id="myCanvas" style="display: none"></canvas>
-
     <script src="./js/player.js"></script>
     <script src="./js/chainsaw.js"></script>
     <script src="./js/chainsawUp.js"></script>
