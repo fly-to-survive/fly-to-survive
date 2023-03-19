@@ -1,19 +1,30 @@
 class Chainsaw {
-  constructor(ctx, gameWidth, gameHeight) {
+  constructor(
+    ctx,
+    gameWidth,
+    gameHeight,
+    chainsawWidth,
+    chainsawHeight,
+    posX,
+    posY,
+    vel,
+    isLateral
+  ) {
     this.ctx = ctx;
     this.gameW = gameWidth;
     this.gameH = gameHeight;
-    this.width = 250;
-    this.height = this.width;
-    this.posX = gameWidth;
-    this.posY = gameHeight - 80;
+    this.width = chainsawWidth;
+    this.height = chainsawHeight;
+    this.posX = posX;
+    this.posY = posY;
     this.image = new Image();
     this.image.src = "./images/sawBladeSprite.png";
     this.image.frames = 2;
     this.image.framesIndex = 0;
 
-    this.velX = 10;
-    this.left = true;
+    this.vel = vel;
+    this.isLateral = isLateral;
+    this.wayLimit = true;
   }
 
   draw(framesCounter) {
@@ -44,14 +55,26 @@ class Chainsaw {
   }
 
   move() {
-    if (this.left && this.posX >= 0 - this.width) {
-      this.posX -= this.velX;
-    } else if (this.left && this.posX < 0) {
-      this.left = false;
-    } else if (!this.left && this.posX < this.gameW) {
-      this.posX += this.velX;
+    if (!this.isLateral) {
+      if (this.wayLimit && this.posX >= 0 - this.width) {
+        this.posX -= this.vel;
+      } else if (this.wayLimit && this.posX < 0) {
+        this.wayLimit = false;
+      } else if (!this.wayLimit && this.posX < this.gameW) {
+        this.posX += this.vel;
+      } else {
+        this.wayLimit = true;
+      }
     } else {
-      this.left = true;
+      if (this.wayLimit && this.posY >= 0 - this.height) {
+        this.posY -= this.vel;
+      } else if (this.wayLimit && this.posY < 0) {
+        this.wayLimit = false;
+      } else if (!this.wayLimit && this.posY < this.gameH) {
+        this.posY += this.vel;
+      } else {
+        this.wayLimit = true;
+      }
     }
   }
 }

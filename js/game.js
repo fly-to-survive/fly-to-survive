@@ -1,20 +1,33 @@
 const Game = {
+  //1. Canvas definition
   canvas: undefined,
   ctx: undefined,
   width: undefined,
   height: undefined,
   FPS: 60,
   framesCounter: 0,
-  background: undefined,
+  //2. Player definition
   player: undefined,
+  //3. Score definition
   score: undefined,
+  //4. Music definition
   music: undefined,
+  //5. Chainsaw definition
   chainsawDown: undefined,
   chainsawUp: undefined,
   chainsawL: undefined,
   chainsawR: undefined,
-  fruit: undefined,
+  chainsawWidth: 250,
+  chainsawHeight: 250,
+  vel: 10,
+  cropImageShort: 80,
+  cropImageLong: 170,
+  adjutsTouchShort: 20,
+  adjustTouchLong: 40,
 
+  //6. Fruit definition
+  fruit: undefined,
+  //7. Control definition
   key: {
     SPACE: 32,
   },
@@ -69,33 +82,69 @@ const Game = {
   },
 
   reset() {
-    //1. Create background
-    //this.background = new Background(this.ctx, this.width, this.height);
-    //2. Create player
+    //1. Create player
     this.player = new Player(this.ctx, this.width, this.height, this.key);
-    //4. Music
+    //2. Music
     this.music = new Audio("./music/Flight_of_the_Bumblebee.mp3");
     this.music.volume = 0.2;
     //3. Create chainsaws
-    this.chainsawDown = new Chainsaw(this.ctx, this.width, this.height);
-    this.chainsawUp = new ChainsawUp(this.ctx, this.width, this.height);
-    this.chainsawL = new ChainsawL(this.ctx, this.width, this.height);
-    this.chainsawR = new ChainsawR(this.ctx, this.width, this.height);
-    //5. Create fruit
+    this.chainsawDown = new Chainsaw(
+      this.ctx,
+      this.width,
+      this.height,
+      this.chainsawWidth,
+      this.chainsawHeight,
+      this.width,
+      this.height - this.cropImageShort,
+      10,
+      false
+    );
+    this.chainsawUp = new Chainsaw(
+      this.ctx,
+      this.width,
+      this.height,
+      this.chainsawWidth,
+      this.chainsawHeight,
+      -this.chainsawWidth,
+      -this.cropImageLong,
+      10,
+      false
+    );
+    this.chainsawL = new Chainsaw(
+      this.ctx,
+      this.width,
+      this.height,
+      this.chainsawWidth,
+      this.chainsawHeight,
+      -this.cropImageLong,
+      -this.chainsawHeight,
+      5,
+      true
+    );
+    this.chainsawR = new Chainsaw(
+      this.ctx,
+      this.width,
+      this.height,
+      this.chainsawWidth,
+      this.chainsawHeight,
+      this.width - this.cropImageShort,
+      this.height,
+      5,
+      true
+    );
+    //4. Create fruit
     this.fruit = new Fruit(this.ctx, this.width, this.height);
   },
 
   drawAll() {
-    //1. Draw background
-    //this.background.draw();
-    //2. Draw player
+    //1. Draw player
     this.player.draw(this.framesCounter);
-    //3. Draw chainsaws array
+    //2. Draw chainsaws array
     this.chainsawDown.draw(this.framesCounter);
     this.chainsawUp.draw(this.framesCounter);
     this.chainsawL.draw(this.framesCounter);
     this.chainsawR.draw(this.framesCounter);
-    //4. Draw fruit
+    //3. Draw fruit
     this.fruit.draw();
   },
 
