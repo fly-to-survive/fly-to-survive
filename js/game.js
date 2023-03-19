@@ -177,5 +177,28 @@ const Game = {
   gameOver() {
     clearInterval(this.interval);
     this.music.currentTime = 1000;
+    this.drawGameOver();
+  },
+  drawGameOver() {
+    this.ctx.fillStyle = "rgba(0,0,0,0.5)";
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+    this.ctx.textAlign = "center";
+    this.ctx.fillStyle = "red";
+    this.ctx.font = "50px Arial";
+    this.ctx.fillText(
+      `YOU DIED`,
+      this.canvas.width / 2,
+      this.canvas.height / 2 - 50
+    );
+
+    this.ctx.fillStyle = "white";
+    this.ctx.font = "20px Arial";
+    this.ctx.fillText(
+      `Push 'R' to try again`,
+      this.canvas.width / 2,
+      this.canvas.height / 2
+    );
+    this.index.gameOn = false;
   },
 };
