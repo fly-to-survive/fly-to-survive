@@ -70,7 +70,7 @@ const Game = {
 
   reset() {
     //1. Create background
-    this.background = new Background(this.ctx, this.width, this.height);
+    //this.background = new Background(this.ctx, this.width, this.height);
     //2. Create player
     this.player = new Player(this.ctx, this.width, this.height, this.key);
     //4. Music
@@ -199,6 +199,5 @@ const Game = {
       this.canvas.width / 2,
       this.canvas.height / 2
     );
-    this.index.gameOn = false;
   },
 };
