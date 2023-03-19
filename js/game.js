@@ -15,8 +15,8 @@ const Game = {
   //5. Chainsaw definition
   chainsawDown: undefined,
   chainsawUp: undefined,
-  chainsawL: undefined,
-  chainsawR: undefined,
+  chainsawLeft: undefined,
+  chainsawRight: undefined,
   chainsawWidth: 250,
   chainsawHeight: 250,
   vel: 10,
@@ -70,13 +70,20 @@ const Game = {
       this.clear();
       //2. Dran elements
       this.drawAll(this.framesCounter);
-      //3. Move chainsaws
-      //4. Clear chainsaws
-      //5. Check if isCollision and invoke .gameOver
-      if (this.isCollision()) {
+      //3. Check if isCollision and invoke .gameOver
+      if (this.isCollision(this.chainsawDown, this.player, "Down")) {
         this.gameOver();
       }
-      //6. Music
+      if (this.isCollision(this.chainsawUp, this.player, "Up")) {
+        this.gameOver();
+      }
+      if (this.isCollision(this.chainsawLeft, this.player, "Left")) {
+        this.gameOver();
+      }
+      if (this.isCollision(this.chainsawRight, this.player, "Right")) {
+        this.gameOver();
+      }
+      //4. Music
       this.music.play();
     }, 1000 / this.FPS);
   },
@@ -110,7 +117,7 @@ const Game = {
       10,
       false
     );
-    this.chainsawL = new Chainsaw(
+    this.chainsawLeft = new Chainsaw(
       this.ctx,
       this.width,
       this.height,
@@ -121,7 +128,7 @@ const Game = {
       5,
       true
     );
-    this.chainsawR = new Chainsaw(
+    this.chainsawRight = new Chainsaw(
       this.ctx,
       this.width,
       this.height,
@@ -142,8 +149,8 @@ const Game = {
     //2. Draw chainsaws array
     this.chainsawDown.draw(this.framesCounter);
     this.chainsawUp.draw(this.framesCounter);
-    this.chainsawL.draw(this.framesCounter);
-    this.chainsawR.draw(this.framesCounter);
+    this.chainsawLeft.draw(this.framesCounter);
+    this.chainsawRight.draw(this.framesCounter);
     //3. Draw fruit
     this.fruit.draw();
   },
@@ -152,72 +159,48 @@ const Game = {
     this.ctx.clearRect(0, 0, this.width, this.height);
   },
 
-  isCollision() {
-    //1. chainsawDow
+  isCollision(chainsaw, player, chainsawPosition) {
+    // Down/Up
     if (
-      this.player.posX > this.chainsawDown.posX &&
-      this.player.posX + 40 <
-        this.chainsawDown.posX + this.chainsawDown.width &&
-      this.player.posY + this.player.height - 20 > this.chainsawDown.posY
-    ) {
-      return true;
-    }
-    if (
-      this.player.posX + this.player.width - this.chainsawDown.posX - 40 > 0 &&
-      this.player.posX + this.player.width <
-        this.chainsawDown.posX + this.chainsawDown.width &&
-      this.player.posY + this.player.height - 20 > this.chainsawDown.posY
+      player.posX > chainsaw.posX &&
+      player.posX + this.adjustTouchLong < chainsaw.posX + chainsaw.width &&
+      ((player.posY + player.height - this.adjutsTouchShort > chainsaw.posY &&
+        chainsawPosition === "Down") ||
+        (player.posY < chainsaw.posY + chainsaw.width - this.adjutsTouchShort &&
+          chainsawPosition === "Up"))
     ) {
       return true;
     }
 
-    //2. chainsawUp
     if (
-      this.player.posX > this.chainsawUp.posX &&
-      this.player.posX + 80 < this.chainsawUp.posX + this.chainsawUp.width &&
-      this.player.posY < this.chainsawUp.posY + this.chainsawUp.width - 40
-    ) {
-      return true;
-    }
-    if (
-      this.player.posX + this.player.width - this.chainsawUp.posX - 40 > 0 &&
-      this.player.posX + this.player.width <
-        this.chainsawUp.posX + this.chainsawUp.width &&
-      this.player.posY < this.chainsawUp.posY + this.chainsawUp.width - 40
+      player.posX + player.width - chainsaw.posX - this.adjustTouchLong > 0 &&
+      player.posX + player.width < chainsaw.posX + chainsaw.width &&
+      ((player.posY + player.height - this.adjutsTouchShort > chainsaw.posY &&
+        chainsawPosition === "Down") ||
+        (player.posY < chainsaw.posY + chainsaw.height - this.adjustTouchLong &&
+          chainsawPosition === "Up"))
     ) {
       return true;
     }
 
-    //3. chainsawL
+    //Left/Right
     if (
-      this.player.posY > this.chainsawL.posY &&
-      this.player.posY + 80 < this.chainsawL.posY + this.chainsawL.width &&
-      this.player.posX < this.chainsawL.posX + this.chainsawL.width - 40
+      player.posY > chainsaw.posY &&
+      player.posY + this.adjustTouchLong < chainsaw.posY + chainsaw.width &&
+      ((player.posX < chainsaw.posX + chainsaw.width - this.adjustTouchLong &&
+        chainsawPosition === "Left") ||
+        (player.posX + player.width - this.adjutsTouchShort > chainsaw.posX &&
+          chainsawPosition === "Right"))
     ) {
       return true;
     }
     if (
-      this.player.posY + this.player.width - this.chainsawL.posY - 40 > 0 &&
-      this.player.posY + this.player.width <
-        this.chainsawL.posY + this.chainsawL.width &&
-      this.player.posX < this.chainsawL.posX + this.chainsawL.width - 40
-    ) {
-      return true;
-    }
-
-    //4. chainsawR
-    if (
-      this.player.posY > this.chainsawR.posY &&
-      this.player.posY + 80 < this.chainsawR.posY + this.chainsawR.width &&
-      this.player.posX + this.player.width - 20 > this.chainsawR.posX
-    ) {
-      return true;
-    }
-    if (
-      this.player.posY + this.player.width - this.chainsawR.posY - 40 > 0 &&
-      this.player.posY + this.player.width <
-        this.chainsawR.posY + this.chainsawR.width &&
-      this.player.posX + this.player.width - 20 > this.chainsawR.posX
+      player.posY + player.width - chainsaw.posY - this.adjustTouchLong > 0 &&
+      player.posY + player.width < chainsaw.posY + chainsaw.width &&
+      ((player.posX < chainsaw.posX + chainsaw.width - this.adjustTouchLong &&
+        chainsawPosition === "Left") ||
+        (player.posX + player.width - this.adjutsTouchShort > chainsaw.posX &&
+          chainsawPosition === "Right"))
     ) {
       return true;
     }
