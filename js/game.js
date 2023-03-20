@@ -5,7 +5,7 @@ const Game = {
   width: undefined,
   height: undefined,
   FPS: 60,
-  framesCounter: 0,
+  framesCounter: 1,
   //2. Player definition
   player: undefined,
   //3. Score definition
@@ -19,18 +19,18 @@ const Game = {
   chainsawRight: undefined,
   chainsawWidth: 250,
   chainsawHeight: 250,
-  vel: 10,
   cropImageShort: 80,
   cropImageLong: 170,
   adjutsTouchShort: 20,
   adjustTouchLong: 40,
 
   //6. Fruit definition
-  fruit: undefined,
+  fruits: undefined,
   //7. Control definition
   key: {
     SPACE: 32,
   },
+  seconds: undefined,
 
   init() {
     this.toggleScreen("startScreen", false);
@@ -62,8 +62,13 @@ const Game = {
 
     this.interval = setInterval(() => {
       this.framesCounter++;
-      if (this.framesCounter > 3000) {
+
+      if (this.framesCounter > 59) {
         this.framesCounter = 0;
+        this.seconds++;
+        this.fruits.forEach((fruit) => {
+          fruit.counter++;
+        });
       }
 
       //1. Clear canvas
@@ -71,20 +76,23 @@ const Game = {
       //2. Dran elements
       this.drawAll(this.framesCounter);
       //3. Check if isCollision and invoke .gameOver
-      if (this.isCollision(this.chainsawDown, this.player, "Down")) {
+      if (this.isCollisionChainsaw(this.chainsawDown, this.player, "Down")) {
         this.gameOver();
       }
-      if (this.isCollision(this.chainsawUp, this.player, "Up")) {
+      if (this.isCollisionChainsaw(this.chainsawUp, this.player, "Up")) {
         this.gameOver();
       }
-      if (this.isCollision(this.chainsawLeft, this.player, "Left")) {
+      if (this.isCollisionChainsaw(this.chainsawLeft, this.player, "Left")) {
         this.gameOver();
       }
-      if (this.isCollision(this.chainsawRight, this.player, "Right")) {
+      if (this.isCollisionChainsaw(this.chainsawRight, this.player, "Right")) {
         this.gameOver();
       }
       //4. Music
       this.music.play();
+      //5. Fruit
+      this.generateFruit();
+      this.clearFruit();
     }, 1000 / this.FPS);
   },
 
@@ -140,7 +148,15 @@ const Game = {
       true
     );
     //4. Create fruit
-    this.fruit = new Fruit(this.ctx, this.width, this.height);
+    this.fruits = [];
+    //5. Score
+    this.score = 0;
+    //6. Seconds
+    this.seconds = 0;
+  },
+
+  clear() {
+    this.ctx.clearRect(0, 0, this.width, this.height);
   },
 
   drawAll() {
@@ -152,14 +168,12 @@ const Game = {
     this.chainsawLeft.draw(this.framesCounter);
     this.chainsawRight.draw(this.framesCounter);
     //3. Draw fruit
-    this.fruit.draw();
+    this.fruits.forEach((fruit) => {
+      fruit.draw();
+    });
   },
 
-  clear() {
-    this.ctx.clearRect(0, 0, this.width, this.height);
-  },
-
-  isCollision(chainsaw, player, chainsawPosition) {
+  isCollisionChainsaw(chainsaw, player, chainsawPosition) {
     // Down/Up
     if (
       player.posX > chainsaw.posX &&
@@ -204,6 +218,44 @@ const Game = {
     ) {
       return true;
     }
+  },
+
+  generateFruit() {
+    if (
+      this.seconds > 0 &&
+      this.seconds % 5 == 0 &&
+      this.fruits.length < 2 &&
+      this.framesCounter % 60 === 0
+    ) {
+      this.fruits.push(new Fruit(this.ctx, this.width, this.height));
+    }
+  },
+
+  clearFruit() {
+    this.fruits = this.fruits.filter((fruit) => {
+      if (this.isCollsionFruit(fruit)) {
+        this.score++;
+        console.log(this.score);
+        return false;
+      }
+      if (fruit.counter > 0 && fruit.counter % 10 == 0) {
+        return false;
+      }
+      return true;
+    });
+  },
+
+  isCollsionFruit(fruit) {
+    return (
+      ((this.player.posX >= fruit.posX &&
+        fruit.posX + fruit.width >= this.player.posX) ||
+        (this.player.posX + this.player.width > fruit.posX &&
+          fruit.posX + fruit.width >= this.player.posX + this.player.width)) &&
+      ((this.player.posY > fruit.posY &&
+        fruit.posY + fruit.height > this.player.posY) ||
+        (this.player.posY + this.player.height > fruit.posY &&
+          fruit.posY + fruit.height > this.player.posY + this.player.height))
+    );
   },
 
   gameOver() {
