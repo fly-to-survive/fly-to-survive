@@ -79,11 +79,13 @@ const Game = {
       //2. Dran elements
       this.drawAll(this.framesCounter);
       //3. Check if isCollision and invoke .gameOver
-      if (this.isCollisionChainsaw(this.chainsawDown, this.player, "Down")) {
-        this.gameOver();
-      }
-      if (this.isCollisionChainsaw(this.chainsawUp, this.player, "Up")) {
-        this.gameOver();
+      if (this.score <= 2) {
+        if (this.isCollisionChainsaw(this.chainsawDown, this.player, "Down")) {
+          this.gameOver();
+        }
+        if (this.isCollisionChainsaw(this.chainsawUp, this.player, "Up")) {
+          this.gameOver();
+        }
       }
       if (this.isCollisionChainsaw(this.chainsawLeft, this.player, "Left")) {
         this.gameOver();
@@ -96,6 +98,12 @@ const Game = {
       //5. Fruit
       this.generateFruit();
       this.clearFruit();
+      //6. Next Level
+      if (this.score >= 2) {
+        let canvas = document.querySelector("#myCanvas");
+        canvas.style.borderTop = "none";
+        canvas.style.borderBottom = "none";
+      }
     }, 1000 / this.FPS);
   },
 
@@ -173,9 +181,12 @@ const Game = {
     this.scoreScreen.drawScore(this.score);
     //2. Draw player
     this.player.draw(this.framesCounter);
-    //3. Draw chainsaws array
-    this.chainsawDown.draw(this.framesCounter);
-    this.chainsawUp.draw(this.framesCounter);
+    //2. Draw chainsaws array
+    if (this.score <= 2) {
+      this.chainsawDown.draw(this.framesCounter);
+      this.chainsawUp.draw(this.framesCounter);
+    }
+
     this.chainsawLeft.draw(this.framesCounter);
     this.chainsawRight.draw(this.framesCounter);
     //4. Draw fruit
