@@ -10,6 +10,7 @@ const Game = {
   player: undefined,
   //3. Score definition
   score: undefined,
+  scoreScreen: undefined,
   //4. Music definition
   music: undefined,
   //5. Chainsaw definition
@@ -151,8 +152,11 @@ const Game = {
     this.fruits = [];
     //5. Score
     this.score = 0;
+    this.scoreScreen = new Score(this.ctx, this.width, this.height),
     //6. Seconds
     this.seconds = 0;
+
+
   },
 
   clear() {
@@ -171,6 +175,9 @@ const Game = {
     this.fruits.forEach((fruit) => {
       fruit.draw();
     });
+    //4. Draw score
+    this.scoreScreen.drawScore(this.score);
+    
   },
 
   isCollisionChainsaw(chainsaw, player, chainsawPosition) {
