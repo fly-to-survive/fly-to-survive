@@ -23,9 +23,11 @@ const Game = {
   cropImageLong: 170,
   adjutsTouchShort: 20,
   adjustTouchLong: 40,
+  chainsawSound: undefined,
 
   //6. Fruit definition
   fruits: undefined,
+  fruitsSound: undefined,
   //7. Control definition
   key: {
     SPACE: 32,
@@ -153,6 +155,11 @@ const Game = {
     this.score = 0;
     //6. Seconds
     this.seconds = 0;
+    //7. Sounds
+    this.chainsawSound = new Audio("./soundFX/chainsawFX.mp3");
+    this.chainsawSound.volume = 0.3;
+    this.fruitsSound = new Audio("./soundFX/sonicRing.mp3");
+    this.fruitsSound.volume = 0.3;
   },
 
   clear() {
@@ -235,7 +242,7 @@ const Game = {
     this.fruits = this.fruits.filter((fruit) => {
       if (this.isCollsionFruit(fruit)) {
         this.score++;
-        console.log(this.score);
+        this.fruitsSound.cloneNode(true).play();
         return false;
       }
       if (fruit.counter > 0 && fruit.counter % 10 == 0) {
@@ -261,6 +268,7 @@ const Game = {
   gameOver() {
     clearInterval(this.interval);
     this.music.currentTime = 1000;
+    this.chainsawSound.play();
     this.drawGameOver();
   },
   drawGameOver() {
