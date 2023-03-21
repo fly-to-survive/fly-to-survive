@@ -193,6 +193,8 @@ const Game = {
     this.fruits.forEach((fruit) => {
       fruit.draw();
     });
+    //4. Draw score
+    this.scoreScreen.drawScore(this.score);
   },
 
   isCollisionChainsaw(chainsaw, player, chainsawPosition) {
