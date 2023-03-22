@@ -181,7 +181,7 @@ const Game = {
     this.scoreScreen.drawScore(this.score);
     //2. Draw player
     this.player.draw(this.framesCounter);
-    //2. Draw chainsaws array
+    //3. Draw chainsaws array
     if (this.score <= 2) {
       this.chainsawDown.draw(this.framesCounter);
       this.chainsawUp.draw(this.framesCounter);
