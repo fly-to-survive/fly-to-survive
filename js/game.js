@@ -162,9 +162,14 @@ const Game = {
     this.fruits = [];
     //5. Score
     this.score = 0;
+<<<<<<< HEAD
     (this.scoreScreen = new Score(this.ctx, this.width, this.height)),
       //6. Seconds
       (this.seconds = 0);
+=======
+    //6. Seconds
+    this.seconds = 0;
+>>>>>>> 1e973d8c269fb3249f4e7e8a71a79a3a35d536c2
     //7. Sounds
     this.chainsawSound = new Audio("./soundFX/chainsawFX.mp3");
     this.chainsawSound.volume = 0.3;
@@ -181,11 +186,19 @@ const Game = {
     this.scoreScreen.drawScore(this.score);
     //2. Draw player
     this.player.draw(this.framesCounter);
+<<<<<<< HEAD
     //3. Draw chainsaws array
+=======
+    //2. Draw chainsaws array
+>>>>>>> 1e973d8c269fb3249f4e7e8a71a79a3a35d536c2
     if (this.score <= 2) {
       this.chainsawDown.draw(this.framesCounter);
       this.chainsawUp.draw(this.framesCounter);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e973d8c269fb3249f4e7e8a71a79a3a35d536c2
     this.chainsawLeft.draw(this.framesCounter);
     this.chainsawRight.draw(this.framesCounter);
     //4. Draw fruit
