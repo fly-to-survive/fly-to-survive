@@ -19,10 +19,7 @@ class Score {
     this.ctx.closePath();
     this.ctx.fillStyle = "white";
     this.ctx.font = "100px Arial";
-    this.ctx.fillText(
-      `${score}`,
-      this.gameWidth / 2 - 25,
-      this.gameHeight / 2 + 35
-    );
+    this.ctx.textAlign = "center";
+    this.ctx.fillText(`${score}`, this.gameWidth / 2, this.gameHeight / 2 + 35);
   }
 }
