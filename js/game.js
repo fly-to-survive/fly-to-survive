@@ -186,15 +186,12 @@ const Game = {
       this.chainsawDown.draw(this.framesCounter);
       this.chainsawUp.draw(this.framesCounter);
     }
-
     this.chainsawLeft.draw(this.framesCounter);
     this.chainsawRight.draw(this.framesCounter);
     //4. Draw fruit
     this.fruits.forEach((fruit) => {
       fruit.draw();
     });
-    //4. Draw score
-    this.scoreScreen.drawScore(this.score);
   },
 
   isCollisionChainsaw(chainsaw, player, chainsawPosition) {
