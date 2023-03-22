@@ -100,6 +100,7 @@ const Game = {
       this.clearFruit();
       //6. Next Level
       if (this.score >= 2) {
+        this.player.score = this.score;
         let canvas = document.querySelector("#myCanvas");
         canvas.style.borderTop = "none";
         canvas.style.borderBottom = "none";
