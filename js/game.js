@@ -278,18 +278,16 @@ const Game = {
     });
   },
 
-  highscore() {
-    let highscore = 0;
-    localStorage.setItem("highscore", 0);
+  drawHighscore() {
+    localStorage.setItem("highscore", 10);
 
-    if (highscore !== null) {
-      if (this.score > highscore) {
+    if (localStorage.getItem("highscore") !== null) {
+      if (this.score > localStorage.getItem("highscore")) {
         localStorage.setItem("highscore", this.score);
       }
     } else {
-      localStorage.setItem("highscore", this.score);
+      localStorage.getItem("highscore");
     }
-    return highscore;
   },
 
   isCollsionFruit(fruit) {
@@ -332,10 +330,10 @@ const Game = {
       this.canvas.height / 2
     );
 
-    this.ctx.fillStyle = "yellow";
+    this.ctx.fillStyle = "rgba(212,175,55)";
     this.ctx.font = "30px Arial";
     this.ctx.fillText(
-      `Highscore ${this.highscore()}`,
+      `Highscore ${localStorage.getItem("highscore")}`,
       this.canvas.width / 2,
       this.canvas.height / 2 + 70
     );
