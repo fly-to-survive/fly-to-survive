@@ -3,8 +3,8 @@ class Fruit {
     this.ctx = ctx;
     this.gameW = gameWidth;
     this.gameH = gameHeight;
-    this.width = 100;
-    this.height = 100;
+    this.width = 70;
+    this.height = 70;
     this.posX = Math.floor(Math.random() * (this.gameW - this.width));
     this.posY = Math.floor(Math.random() * (this.gameH - this.height));
     this.image = new Image();
