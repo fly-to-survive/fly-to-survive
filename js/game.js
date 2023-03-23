@@ -267,11 +267,11 @@ const Game = {
   },
 
   drawHighscore() {
-    localStorage.setItem("highscore", 10);
+    localStorage.setItem("highscore", 5);
 
     if (localStorage.getItem("highscore") !== null) {
-      if (this.score > localStorage.getItem("highscore")) {
-        localStorage.setItem("highscore", this.score);
+      if (this.score > parseInt(localStorage.getItem("highscore"))) {
+        localStorage.setItem("highscore", JSON.stringify(this.score));
       }
     } else {
       localStorage.getItem("highscore");
@@ -321,7 +321,7 @@ const Game = {
     this.ctx.fillStyle = "rgba(212,175,55)";
     this.ctx.font = "30px Arial";
     this.ctx.fillText(
-      `Highscore ${localStorage.getItem("highscore")}`,
+      `Highscore ${JSON.parse(localStorage.getItem("highscore"))}`,
       this.canvas.width / 2,
       this.canvas.height / 2 + 70
     );
