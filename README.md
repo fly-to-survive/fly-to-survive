@@ -5,6 +5,8 @@
 
 ## Description
 
+Obstacle game. The aim of this game is to make the character fly while trying to avoid the saws that will be appearing on the sides and collecting items to increase the score. The game ends when a chainsaw hits you.
+
 ## Instructions
 Use ```Spacebar``` to fly.\
 Use ```R``` to reload the game once you have died.
@@ -13,7 +15,11 @@ Use ```R``` to reload the game once you have died.
 
 ### Phase I: MVP
 
+Single player game. The character flies when the spacebar is pressed. The character turns around when it reaches a wall.
+
 ### Phase II
+
+Fruit appears and increases score when collected. Sound FX added. Score counter added. Start screen and game over screen added.
 
 ### Phase III
 
