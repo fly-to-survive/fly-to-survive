@@ -6,8 +6,8 @@
 ## Description
 
 ## Instructions
-Use ```Spacebar``` to fly
-Use ```R``` to reload the game once you have died
+Use ```Spacebar``` to fly.\
+Use ```R``` to reload the game once you have died.
 
 ## Project phases
 
