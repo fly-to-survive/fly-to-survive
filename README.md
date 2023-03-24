@@ -1,6 +1,6 @@
 # Fly to Survive
 
-## Access to the game
+## Game access
 [PLAY!](https://fly-to-survive.github.io/fly-to-survive/)
 
 ## Description
