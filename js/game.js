@@ -34,6 +34,8 @@ const Game = {
     SPACE: 32,
   },
   seconds: undefined,
+  //8. Next Level
+  nextLevel: 5,
 
   init() {
     this.toggleScreen("startScreen", false);
@@ -79,7 +81,7 @@ const Game = {
       //2. Dran elements
       this.drawAll(this.framesCounter);
       //3. Check if isCollision and invoke .gameOver
-      if (this.score <= 2) {
+      if (this.score < this.nextLevel) {
         if (this.isCollisionChainsaw(this.chainsawDown, this.player, "Down")) {
           this.gameOver();
         }
@@ -99,7 +101,10 @@ const Game = {
       this.generateFruit();
       this.clearFruit();
       //6. Next Level
-      if (this.score >= 2) {
+      if (this.score >= this.nextLevel) {
+        this.player.score = this.score;
+        this.chainsawLeft.vel = 15;
+        this.chainsawRight.vel = 15;
         let canvas = document.querySelector("#myCanvas");
         canvas.style.borderTop = "none";
         canvas.style.borderBottom = "none";
@@ -109,7 +114,14 @@ const Game = {
 
   reset() {
     //1. Create player
-    this.player = new Player(this.ctx, this.width, this.height, this.key);
+    this.player = new Player(
+      this.ctx,
+      this.width,
+      this.height,
+      this.key,
+      this.score,
+      this.nextLevel
+    );
     //2. Music
     this.music = new Audio("./music/Flight_of_the_Bumblebee.mp3");
     this.music.volume = 0.2;
@@ -182,7 +194,7 @@ const Game = {
     //2. Draw player
     this.player.draw(this.framesCounter);
     //3. Draw chainsaws array
-    if (this.score <= 2) {
+    if (this.score < this.nextLevel) {
       this.chainsawDown.draw(this.framesCounter);
       this.chainsawUp.draw(this.framesCounter);
     }

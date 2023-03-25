@@ -1,5 +1,5 @@
 class Player {
-  constructor(ctx, gameW, gameH, key) {
+  constructor(ctx, gameW, gameH, key, score, nextLevel) {
     this.ctx = ctx;
 
     this.gameWidth = gameW;
@@ -29,6 +29,9 @@ class Player {
 
     this.key = key;
 
+    this.score = 0;
+    this.nextLevel = nextLevel;
+
     this.setListener();
   }
 
@@ -46,7 +49,7 @@ class Player {
     );
 
     this.animate(framesCounter);
-    this.move();
+    this.move(this.score, this.nextLevel);
   }
 
   animate(framesCounter) {
@@ -57,7 +60,7 @@ class Player {
       this.image.framesIndex = 0;
     }
   }
-  move() {
+  move(score, nextLevel) {
     if (this.right && this.posX + this.width < this.gameWidth) {
       this.posX += this.velX;
     } else if (this.right && this.posX + this.width > this.gameWidth) {
@@ -69,12 +72,26 @@ class Player {
       this.right = true;
       this.image.src = "./images/spriteBirdRight.png";
     }
-    if (this.posY + this.height < this.gameHeight) {
+    if (score < nextLevel) {
+      if (this.posY + this.height < this.gameHeight) {
+        this.posY += this.velY;
+        this.velY += this.gravity;
+      }
+
+      if (this.posY <= 0) {
+        this.posY = 0;
+      }
+    }
+    if (score >= this.nextLevel) {
       this.posY += this.velY;
       this.velY += this.gravity;
-    }
-    if (this.posY <= 0) {
-      this.posY = 0;
+
+      if (this.posY <= 0) {
+        this.posY = this.gameHeight - this.height;
+      }
+      if (this.posY > this.gameHeight) {
+        this.posY = 0;
+      }
     }
   }
 
