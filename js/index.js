@@ -1,4 +1,5 @@
 window.onload = () => {
+  localStorage.setItem("highscore", 0);
   this.gameOn = false;
   this.canvas = document.querySelector("#myCanvas");
   document.addEventListener("keydown", (e) => {
