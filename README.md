@@ -51,7 +51,40 @@ window.onload = () => {
 
 #### game.js
 
-``
+```
+const Game = {
+
+  init() {}
+
+  setContext() {}
+
+  setDimensions() {}
+
+  toggleScreen(id, toggle) {}
+
+  start() {}
+
+  reset() {}
+
+  clear() {}
+
+  drawAll() {}
+
+  isCollisionChainsaw(chainsaw, player, chainsawPosition) {}
+
+  generateFruit() {}
+
+  clearFruit() {}
+
+  drawHighscore() {}
+
+  isCollsionFruit(fruit) {}
+
+  gameOver() {}
+
+  drawGameOver() {}
+}
+```
 
 #### player.js
 
@@ -204,4 +237,4 @@ class Score {
 
 #### Slides
 
-[Link to Slides]()
+[Link to Slides](https://slides.com/jaeg90/fly-to-survive)
