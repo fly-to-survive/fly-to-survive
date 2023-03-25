@@ -186,6 +186,9 @@ class Score {
 
 ## Assets
 
+![Background](https://github.com/fly-to-survive/fly-to-survive/blob/main/images/background.jpg)
+![Player sprite](https://github.com/fly-to-survive/fly-to-survive/blob/main/images/spriteBirdRight.png)
+
 ## Links
 
 #### Trello
