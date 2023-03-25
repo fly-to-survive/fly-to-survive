@@ -187,7 +187,9 @@ class Score {
 ## Assets
 
 ![Player sprite](https://github.com/fly-to-survive/fly-to-survive/blob/main/images/spriteBirdRight.png)
+
 ![Background](https://github.com/fly-to-survive/fly-to-survive/blob/main/images/background.jpg)
+
 ![Chainsaw sprite](https://github.com/fly-to-survive/fly-to-survive/blob/main/images/sawBladeSprite.png)
 
 ## Links
