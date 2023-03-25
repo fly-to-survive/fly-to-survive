@@ -25,6 +25,8 @@ Fruit appears and increases score when collected. Sound FX added. Score counter 
 
 ### Phase III
 
+Level up. Lower and upper walls disappear and allow the character to move across the game screen vertically without obstacles. Speed increased.
+
 ## Data structure
 
 #### index.js
@@ -53,7 +55,44 @@ window.onload = () => {
 
 #### player.js
 
-``
+```
+class Player {
+  constructor(ctx, gameW, gameH, key, score, nextLevel) {
+    this.ctx = ctx;
+
+    this.gameWidth = gameW;
+    this.gameHeight = gameH;
+
+    this.width = 100;
+    this.height = 100;
+
+    this.image = new Image();
+    this.image.src = "./images/spriteBirdRight.png";
+    this.image.frames = 14;
+    this.image.framesIndex = 0;
+
+    this.posX = this.gameWidth / 2;
+    this.posY = this.gameHeight / 2;
+    this.posY0 = this.posY;
+
+    //Lateral movement
+
+    this.velX = 5;
+    this.right = true;
+
+    //Jump
+    this.impulse = 40;
+    this.velY = 1;
+    this.gravity = 0.4;
+
+    this.key = key;
+
+    this.score = 0;
+    this.nextLevel = nextLevel;
+
+    this.setListener();
+  }
+  ```
 
 #### chainsaw.js
 
@@ -61,7 +100,21 @@ window.onload = () => {
 
 #### fruit.js
 
-` `
+```
+class Fruit {
+  constructor(ctx, gameWidth, gameHeight) {
+    this.ctx = ctx;
+    this.gameW = gameWidth;
+    this.gameH = gameHeight;
+    this.width = 70;
+    this.height = 70;
+    this.posX = Math.floor(Math.random() * (this.gameW - this.width));
+    this.posY = Math.floor(Math.random() * (this.gameH - this.height));
+    this.image = new Image();
+    this.image.src = "./images/blackberry.png";
+    this.counter = 0;
+  }
+```
 
 #### score.js
 
