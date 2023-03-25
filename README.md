@@ -31,7 +31,7 @@ Level up. Lower and upper walls disappear and allow the character to move across
 
 #### index.js
 
-```
+```Javascript
 window.onload = () => {
   localStorage.setItem("highscore", 0);
   this.gameOn = false;
@@ -51,7 +51,7 @@ window.onload = () => {
 
 #### game.js
 
-```
+```Javascript
 const Game = {
 
   init() {}
@@ -88,7 +88,7 @@ const Game = {
 
 #### player.js
 
-```
+```Javascript
 class Player {
   constructor(ctx, gameW, gameH, key, score, nextLevel) {
     this.ctx = ctx;
@@ -139,7 +139,7 @@ class Player {
 
 #### chainsaw.js
 
-```
+```Javascript
 class Chainsaw {
   constructor(
     ctx,
@@ -179,7 +179,7 @@ class Chainsaw {
 
 #### fruit.js
 
-```
+```Javascript
 class Fruit {
   constructor(ctx, gameWidth, gameHeight) {
     this.ctx = ctx;
@@ -200,7 +200,7 @@ class Fruit {
 
 #### score.js
 
-```
+```Javascript
 class Score {
   constructor(ctx, gameW, gameH) {
     this.ctx = ctx;
