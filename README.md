@@ -4,6 +4,10 @@
 
 [PLAY!](https://fly-to-survive.github.io/fly-to-survive/)
 
+## How it looks
+
+![Game Gif](https://github.com/fly-to-survive/fly-to-survive/blob/main/images/flyToSurvive.gif)
+
 ## Description
 
 Obstacle game. The aim of this game is to make the character fly while trying to avoid the saws that will be appearing on the sides and collecting items to increase the score. The game ends when a chainsaw hits you.
