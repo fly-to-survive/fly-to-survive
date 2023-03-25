@@ -76,7 +76,6 @@ class Player {
     this.posY0 = this.posY;
 
     //Lateral movement
-
     this.velX = 5;
     this.right = true;
 
@@ -92,11 +91,58 @@ class Player {
 
     this.setListener();
   }
+
+  draw(framesCounter) {}
+
+  animate(framesCounter) {}
+
+  move(score, nextLevel) {}
+
+  setListener() {}
+
+  jump() {}
+}
   ```
 
 #### chainsaw.js
 
-``
+```
+class Chainsaw {
+  constructor(
+    ctx,
+    gameWidth,
+    gameHeight,
+    chainsawWidth,
+    chainsawHeight,
+    posX,
+    posY,
+    vel,
+    isLateral
+  ) {
+    this.ctx = ctx;
+    this.gameW = gameWidth;
+    this.gameH = gameHeight;
+    this.width = chainsawWidth;
+    this.height = chainsawHeight;
+    this.posX = posX;
+    this.posY = posY;
+    this.image = new Image();
+    this.image.src = "./images/sawBladeSprite.png";
+    this.image.frames = 2;
+    this.image.framesIndex = 0;
+
+    this.vel = vel;
+    this.isLateral = isLateral;
+    this.wayLimit = true;
+  }
+
+  draw(framesCounter) {}
+
+  animate(framesCounter) {}
+
+  move() {}
+}
+```
 
 #### fruit.js
 
@@ -114,11 +160,29 @@ class Fruit {
     this.image.src = "./images/blackberry.png";
     this.counter = 0;
   }
+
+  draw() {}
+}
 ```
 
 #### score.js
 
-` `
+```
+class Score {
+  constructor(ctx, gameW, gameH) {
+    this.ctx = ctx;
+    this.gameWidth = gameW;
+    this.gameHeight = gameH;
+    this.width = 200;
+    this.height = 200;
+
+    this.posX = gameW / 2;
+    this.posY = gameH / 2;
+  }
+
+  drawScore(score) {}
+}
+```
 
 ## Assets
 
