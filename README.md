@@ -49,16 +49,15 @@ window.onload = () => {
 
 #### game.js
 
-```
-
+``
 
 #### player.js
 
-` `
+``
 
 #### chainsaw.js
 
-```
+``
 
 #### fruit.js
 
@@ -74,11 +73,11 @@ window.onload = () => {
 
 #### Trello
 
-[Link to Trello]()
+[Link to Trello](https://trello.com/b/l6UDcmqA/fly-to-survive)
 
 #### Github
 
-[Link to Github]()
+[Link to Github](https://github.com/fly-to-survive/fly-to-survive)
 
 #### Slides
 
