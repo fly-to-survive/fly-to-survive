@@ -1,4 +1,5 @@
 window.onload = () => {
+  localStorage.setItem("highscore", 0);
   this.gameOn = false;
   document.addEventListener("keydown", (e) => {
     if (e.keyCode == 32 && !gameOn) {
